@@ -26,6 +26,7 @@ Fonction.php
 Fiche.php:
     -liens employee => fiche [4737 ,10mn]
     -historique du salaire et de l'emploie occupe [4737]
+    -l'age max du travail de l'employee[4737 ,10 mn]
 
 Formulaire.php(recherche):
     -departement [5010 ,2mn]
@@ -42,7 +43,9 @@ Fonction.php
     - fiche[47,73, en cours ]
     - recherche formulaire [5010 , 30mn]
     - fiche_employee [4737,8mn]
-    - affichage_20_ligne [non_fait]
+    
+    -calcul d'age du travaille de l'employee[4737 ,15 mn]
+    -
 
 # CSS
 Bootstrap [5010, 10min]

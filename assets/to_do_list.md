@@ -52,6 +52,8 @@ Fonction.php
     - recherche formulaire [5010 , 30mn]
     - fiche_employee [4737,8mn]    
     - calcul d'age du travaille de l'employee[4737,15 mn]+UPdate de CURTIME[5010, 5]
+    -afficher departement[5010 ,30mn]
+    
     
 
 

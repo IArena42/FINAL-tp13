@@ -1,6 +1,7 @@
 <?php
     include "../inc/fonction.php";
     $fiche = get_Employee_Profile($_GET['emp_no']);
+    $age_travail_max = age_travail($_GET['emp_no']);
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +42,26 @@
                                 <td><?php echo $fiche['emp_no']; ?></td>
                                 <td><?php echo $fiche['gender']; ?></td>
                                 <td><?php echo $fiche['salary']; ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="card-title mb-3"><i class="bi bi-calendar-event"></i> Âge de travail</h2>
+                <div class="table-responsive">
+                    <table class="table table-dark table-bordered">
+                        <thead class="table table-active">
+                            <tr>
+                                <th>Années de travail (MAX)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><h4><?php echo $age_travail_max['annees_travaillees'] ?? 0; ?> ans</h4></td>
                             </tr>
                         </tbody>
                     </table>

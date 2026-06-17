@@ -48,7 +48,10 @@ Fonction.php
     - fiche[47,73, en cours ]
     - recherche formulaire [5010 , 30mn]
     - fiche_employee [4737,8mn]
-    - affichage_20_ligne [non_fait]
+    
+    -calcul d'age du travaille de l'employee[4737 ,15 mn]
+    
+
 
 # CSS
 Bootstrap [5010, 10min]

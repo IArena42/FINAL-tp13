@@ -125,14 +125,15 @@ function historique_titre($emp_no) {
     return getAllLine($sql);
 }
 
- //calculer l'age de travaile de employé dans l'entreprise
-function age_travail($emp_no) {
-    $sql = "SELECT (titles.from_date)-(titles.to_date)
-    FROM titles
-    WHERE emp_no = '10017' ";
+ //calculer l'age de travail maximum de l'employé dans l'entreprise
 
+function age_travail($emp_no) {
+    $sql = "SELECT MAX(YEAR(to_date) - YEAR(from_date)) AS annees_travaillees
+    FROM titles  
+    WHERE emp_no = '%s'";
     $sql = sprintf($sql, $emp_no);      
-    
     return getOneLine($sql);
 }
+
+
 

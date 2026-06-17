@@ -26,14 +26,12 @@ function getAllLine($sql)
     return $return;
 }
 
-function getOneLine($sql)
-{
+function getOneLine($sql) {
     $result = mysqli_query(dbconnect(), $sql);
-    return mysqli_fetch_assoc($result);
+    $row = mysqli_fetch_assoc($result);
     mysqli_free_result($result);
-    return $return;
+    return $row;
 }
-
 function getDepartement()
 {
     $sql    = "SELECT * FROM departments";
@@ -90,6 +88,7 @@ function default_search($dept, $emp, $min, $max)
 // fonction pour faire apparaitre les fiches de l'employee
 //function get_Employee_Profile($emp_no) {
 //    $sql = "SELECT * FROM employees
+
 //            WHERE employees.emp_no = '%s'";
 //    $sql = sprintf($sql, $emp_no);
 //
@@ -128,7 +127,8 @@ function historique_titre($emp_no) {
  //calculer l'age de travail maximum de l'employé dans l'entreprise
 
 function age_travail($emp_no) {
-    $sql = "SELECT MAX(YEAR(to_date) - YEAR(from_date)) AS annees_travaillees
+    $sql = "SELECT MAX(
+    (CASE WHEN YEAR(to_date) = '9999' THEN YEAR(CURTIME()) ELSE YEAR(to_date) END) - YEAR(from_date)) AS annees_travaillees
     FROM titles  
     WHERE emp_no = '%s'";
     $sql = sprintf($sql, $emp_no);      
@@ -158,5 +158,42 @@ function get_job_stats($dept_no = null){
     return getAllLine($sql);
 }
 
+function runQuery($sql) {
+    $result = mysqli_query(dbconnect(), $sql);
+    if ($result === false) {
+        return false;
+    }
+    return $result;
+}
+function addDept($d, $emp_no, $date){
+    $actual = getActualdept($emp_no);
+    if ($date > $actual["from_date"] && $d != $actual["dept_no"]){
+    $sql="DELETE FROM dept_emp WHERE (YEAR(to_date)='9999' AND emp_no='%s')";
+    $sql = sprintf($sql, $emp_no);      
+    $del=runQuery($sql);
 
+    $sql="INSERT INTO dept_emp VALUES
+    ('%s' , '%s', '%s', '%s')";
+    $sql= sprintf($sql,$emp_no ,$actual["dept_no"], $actual["from_date"], $date);
+    $update=runQuery($sql);
 
+    $sql="INSERT INTO dept_emp VALUES
+    ('%s' , '%s', '%s', '%s')";
+    $sql= sprintf($sql,$emp_no ,$d, $date, $actual["to_date"]);
+    $new=runQuery($sql);
+
+    if($del===true && $update===true && $new=== true) 
+        { return 1;}
+    else if($del === false){
+        return"del";
+    }
+    else if($update === false){
+        return"update";
+    }if($new === false){
+        return "new";
+    }
+    } 
+    else{
+        return 0;
+    }
+}

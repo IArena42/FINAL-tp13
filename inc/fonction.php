@@ -184,5 +184,5 @@ function addDept($d, $emp_no, $date){
     else{
         return 0;
     }
-    fhjkdls
+
 }

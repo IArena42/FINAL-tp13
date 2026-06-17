@@ -1,6 +1,4 @@
-hello 
-hayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
-Devoir atao :)
+#TP-13
 
 v_dept_emp
 CREATE OR REPLACE VIEW v_dept_emp AS 
@@ -8,3 +6,11 @@ SELECT departments.dept_name as department, employees.first_name as first, emplo
 FROM dept_emp
 JOIN employees ON dept_emp.emp_no=employees.emp_no 
 JOIN departments ON dept_emp.dept_no=departments.dept_no;
+
+V-BeforEnd
+CSS BootStrap added
+Recherche et Fiche update
+
+v_dept_nbEmp
+CREATE OR REPLACE VIEW v_dept_nbEmp AS 
+select dept_no, (COUNT(emp_no)) as nb from dept_emp group by dept_no;

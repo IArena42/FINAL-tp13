@@ -41,17 +41,30 @@ function getDepartement()
     return $result;
 }
 
-function getDepartment_Manager()
+function getDepartment_Manager_NbEmp()
 {
-    $sql = "SELECT departments.dept_no as num, departments.dept_name as name, employees.first_name as first_name, employees.last_name as last_name, employees.emp_no as num_emp  FROM departments
+    $sql = "SELECT departments.dept_no as num, departments.dept_name as name, employees.first_name as first_name, employees.last_name as last_name, employees.emp_no as num_emp, v_dept_nbEmp.nb as nb_emp
+    FROM departments
     LEFT JOIN dept_manager
     ON departments.dept_no=dept_manager.dept_no
     LEFT JOIN employees
     ON dept_manager.emp_no=employees.emp_no
-    WHERE dept_manager.to_date > CURTIME()";
+    JOIN v_dept_nbEmp
+    ON departments.dept_no=v_dept_nbEmp.dept_no
+    WHERE dept_manager.to_date > CURTIME()
+    ORDER BY num ASC";
 
     $result = getAllLine($sql);
     return $result;
+}
+
+function getDepartment_byID($id){
+    $sql = "SELECT * FROM departments WHERE dept_no='%s' ";
+    $sql = sprintf ($sql, $id);
+
+    $result = getOneLine($sql);
+    return $result;
+
 }
 
 function recherche_personne_dans_departement($dept_no)
@@ -62,13 +75,11 @@ function recherche_personne_dans_departement($dept_no)
             WHERE dept_no = '%s'";
     $sql = sprintf($sql, $dept_no);
 
-    // echo $sql; // Affiche la requête SQL pour le débogage
     return getAllLine($sql);
 }
 
 function default_search($dept, $emp, $min, $max)
 {
-
     $sql    = "SELECT *  FROM v_dept_emp WHERE department LIKE '%s%s%s' AND age > %s AND age < %s AND (v_dept_emp.first LIKE '%s%s%s' OR v_dept_emp.last LIKE '%s%s%s')";
     $sql    = sprintf($sql, "%", $dept, "%", $min, $max, "%", $emp, "%", "%", $emp, "%");
     $result = getAllLine($sql);
@@ -113,7 +124,6 @@ function historique_titre($emp_no) {
 
     return getAllLine($sql);
 }
-// fonction pou les salaires de l'employees 
 
 
 ?>

@@ -136,19 +136,26 @@ function age_travail($emp_no) {
 }
 
 // fonction statistique
-function get_job_stats(){
+function get_job_stats($dept_no = null){
     $sql = "SELECT 
-    SUM(CASE WHEN e.gender = 'M'' THEN 1 else 0 END) AS count_men,
-    SUM(CASE WHEN e.gender = 'F' THEN 1 else 0 END) AS count_women,
-    ROUND(AVG(s.salary), 2) AS avg_salary,
-    FROM titles t
-    join employees e on t.emp_no = e.emp_no
-    join salaries s on e.emp_no = s.emp_no
-    Where t.to_date = '9999-01-01' AND s.to_date = '9999-01-01'
-    group by t.title'";
-
-    return getAllLine($sql);
+    d.dept_no,
+    d.dept_name,
+    SUM(CASE WHEN e.gender = 'M' THEN 1 ELSE 0 END) AS count_men,
+    SUM(CASE WHEN e.gender = 'F' THEN 1 ELSE 0 END) AS count_women,
+    ROUND(AVG(s.salary), 2) AS avg_salary
+    FROM employees e
+    JOIN dept_emp de ON e.emp_no = de.emp_no
+    JOIN departments d ON de.dept_no = d.dept_no
+    JOIN salaries s ON e.emp_no = s.emp_no
+    WHERE s.to_date = '9999-01-01' AND de.to_date = '9999-01-01'";
     
+    if ($dept_no !== null) {
+        $sql .= sprintf(" AND d.dept_no = '%s'", $dept_no);
+        return getOneLine($sql);
+    }
+    
+    $sql .= " GROUP BY d.dept_no, d.dept_name ORDER BY d.dept_name ASC";
+    return getAllLine($sql);
 }
 
 

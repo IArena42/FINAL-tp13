@@ -135,5 +135,21 @@ function age_travail($emp_no) {
     return getOneLine($sql);
 }
 
+// fonction statistique
+function get_job_stats(){
+    $sql = "SELECT 
+    SUM(CASE WHEN e.gender = 'M'' THEN 1 else 0 END) AS count_men,
+    SUM(CASE WHEN e.gender = 'F' THEN 1 else 0 END) AS count_women,
+    ROUND(AVG(s.salary), 2) AS avg_salary,
+    FROM titles t
+    join employees e on t.emp_no = e.emp_no
+    join salaries s on e.emp_no = s.emp_no
+    Where t.to_date = '9999-01-01' AND s.to_date = '9999-01-01'
+    group by t.title'";
+
+    return getAllLine($sql);
+    
+}
+
 
 

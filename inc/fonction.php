@@ -135,6 +135,21 @@ function age_travail($emp_no) {
     return getOneLine($sql);
 }
 
+// fonction statistique
+function get_job_stats($dept_no = null){
+    $sql = "SELECT 
+    d.dept_no,
+    d.dept_name,
+    SUM(CASE WHEN e.gender = 'M' THEN 1 ELSE 0 END) AS count_men,
+    SUM(CASE WHEN e.gender = 'F' THEN 1 ELSE 0 END) AS count_women,
+    ROUND(AVG(s.salary), 2) AS avg_salary
+    FROM employees e
+    JOIN dept_emp de ON e.emp_no = de.emp_no
+    JOIN departments d ON de.dept_no = d.dept_no
+    JOIN salaries s ON e.emp_no = s.emp_no
+    WHERE s.to_date = '9999-01-01' AND de.to_date = '9999-01-01'";
+
+     }
 function getActualdept ($emp_no){
     $sql = "SELECT * from dept_emp
             WHERE emp_no = '%s'
@@ -144,6 +159,13 @@ function getActualdept ($emp_no){
     $sql = sprintf($sql, $emp_no);      
     return getOneLine($sql);
     
+    if ($dept_no !== null) {
+        $sql .= sprintf(" AND d.dept_no = '%s'", $dept_no);
+        return getOneLine($sql);
+    }
+    
+    $sql .= " GROUP BY d.dept_no, d.dept_name ORDER BY d.dept_name ASC";
+    return getAllLine($sql);
 }
 
 function runQuery($sql) {
@@ -184,5 +206,4 @@ function addDept($d, $emp_no, $date){
     else{
         return 0;
     }
-    fhjkdls
 }

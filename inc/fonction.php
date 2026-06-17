@@ -166,14 +166,6 @@ function getActualdept ($emp_no){
 
     $sql = sprintf($sql, $emp_no);      
     return getOneLine($sql);
-    
-    if ($dept_no !== null) {
-        $sql .= sprintf(" AND d.dept_no = '%s'", $dept_no);
-        return getOneLine($sql);
-    }
-    
-    $sql .= " GROUP BY d.dept_no, d.dept_name ORDER BY d.dept_name ASC";
-    return getAllLine($sql);
 }
 
 function runQuery($sql) {

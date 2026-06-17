@@ -23,6 +23,7 @@ Fonction.php
     - getEmploye/Depart[5010 ,5mn]
     - recherche_Employe/Department [4737, 15mn]
     - Liste employes [4737 ,6mn]
+    - Ajouter dept[5010, 30]
 
 Fiche.php:
     -liens employee => fiche [4737 ,10mn]
@@ -47,9 +48,8 @@ Fonction.php
 
     - fiche[47,73, en cours ]
     - recherche formulaire [5010 , 30mn]
-    - fiche_employee [4737,8mn]
-    
-    -calcul d'age du travaille de l'employee[4737 ,15 mn]
+    - fiche_employee [4737,8mn]    
+    - calcul d'age du travaille de l'employee[4737,15 mn]+UPdate de CURTIME[5010, 5]
     
 
 

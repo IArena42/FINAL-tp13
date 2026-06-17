@@ -127,7 +127,8 @@ function historique_titre($emp_no) {
  //calculer l'age de travail maximum de l'employé dans l'entreprise
 
 function age_travail($emp_no) {
-    $sql = "SELECT MAX(YEAR(to_date) - YEAR(from_date)) AS annees_travaillees
+    $sql = "SELECT MAX(
+    (CASE WHEN YEAR(to_date) = '9999' THEN YEAR(CURTIME()) ELSE YEAR(to_date) END) - YEAR(from_date)) AS annees_travaillees
     FROM titles  
     WHERE emp_no = '%s'";
     $sql = sprintf($sql, $emp_no);      

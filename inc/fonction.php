@@ -113,6 +113,7 @@ function historique_titre($emp_no) {
 
     return getAllLine($sql);
 }
+// fonction pou les salaires de l'employees 
 
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-    include ("../inc/fonction.php");
+    include "../inc/fonction.php";
     $fiche = get_Employee_Profile($_GET['emp_no']);
 ?>
 
@@ -14,11 +14,11 @@
 </head>
 <body>
     <main class="container py-4">
-        <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm mb-3"><i class="bi bi-arrow-left"></i> Retour</a>
+        <a href="javascript:history.back()"><button  class="btn btn-outline-secondary btn-sm mb-3"><i class="bi bi-arrow-left"></i>Retour</button></a>
 
         <div class="card mb-4">
             <div class="card-body">
-                <h1 class="card-title mb-3"><i class="bi bi-person-vcard"></i> Fiche de l'employé "<?php echo $fiche['first_name']." ".$fiche['last_name']; ?>"</h1>
+                <h1 class="card-title mb-3"><i class="bi bi-person-vcard"></i> Fiche de l'employé "<?php echo $fiche['first_name'] . " " . $fiche['last_name']; ?>"</h1>
                 <div class="table-responsive">
                     <table class="table table-dark table-bordered ">
                         <thead class="table table-active">
@@ -98,6 +98,9 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="card">
+            <a href="modifDept.php"><button  class="btn btn-outline-secondary btn-sm mb-3">Changer de departement</button></a>
         </div>
     </main>
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -24,7 +24,9 @@ Fonction.php
     - recherche_Employe/Department [4737, 15mn]
     - Liste employes [4737 ,6mn]
     - Ajouter dept[5010, 30]
-
+    - runQuery [5010 , 5]
+    - getActualDept[5010, 10]
+    - 
 Fiche.php:
     -liens employee => fiche [4737 ,10mn]
     -historique du salaire et de l'emploie occupe [4737]

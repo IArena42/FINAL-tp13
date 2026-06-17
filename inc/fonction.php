@@ -149,7 +149,15 @@ function get_job_stats($dept_no = null){
     JOIN salaries s ON e.emp_no = s.emp_no
     WHERE s.to_date = '9999-01-01' AND de.to_date = '9999-01-01'";
 
-     }
+    if ($dept_no !== null) {
+        $sql .= sprintf(" AND d.dept_no = '%s'", $dept_no);
+        return getOneLine($sql);
+    }
+    
+    $sql .= " GROUP BY d.dept_no, d.dept_name ORDER BY d.dept_name ASC";
+    return getAllLine($sql);
+}
+
 function getActualdept ($emp_no){
     $sql = "SELECT * from dept_emp
             WHERE emp_no = '%s'

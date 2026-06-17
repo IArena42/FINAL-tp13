@@ -48,7 +48,7 @@
                             <tr>
                                 <td><strong><?php echo $stats['count_men']; ?></strong></td>
                                 <td><strong><?php echo $stats['count_women']; ?></strong></td>
-                                <td><strong><?php echo number_format($stats['avg_salary'], 2, ',', ' '); ?> €</strong></td>
+                                <td><strong><?php echo number_format($stats['avg_salary'], 2, ',', ' '); ?> </strong></td>
                             </tr>
                         </tbody>
                     </table>

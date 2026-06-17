@@ -1,11 +1,11 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
 ?>
 
 <?php
-require "inc/fonction.php";
-$department = getDepartment_Manager_NbEmp();
+    require "inc/fonction.php";
+    $department = getDepartment_Manager_NbEmp();
 ?>
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -18,7 +18,7 @@ $department = getDepartment_Manager_NbEmp();
 </head>
 <body>
     <main class="container py-4">
-        
+
     <div class="card mb-4">
             <div class="card-body">
                 <h1 class="card-title mb-3"><i class="bi bi-search"></i> Recherche</h1>
@@ -28,9 +28,9 @@ $department = getDepartment_Manager_NbEmp();
                         <select name="dept" class="form-select" aria-placeholder="Dept">
                             <?php foreach ($department as $d) {
                                 ?>
-                                <option value="<?= $d["name"] ?>"><?= $d["name"] ?></option>
-                                <?php 
-                            } ?>
+                                <option value="<?php echo $d["name"] ?>"><?php echo $d["name"] ?></option>
+                                <?php
+                                }?>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -62,26 +62,30 @@ $department = getDepartment_Manager_NbEmp();
                                 <th>Numero</th>
                                 <th>Nom</th>
                                 <th>Manager</th>
-                                <th>Nb d'employees</th>                                
+                                <th>Nb d'employees</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                            foreach ($department as $d) {
+                            <?php
+                                foreach ($department as $d) {
                                 ?>
                                 <tr>
-                                    <td><a href="pages/employee.php?id=<?= $d["num"] ?>" class="link-info text-decoration-none"><?= $d["num"] ?></a></td>
-                                    <td><a href="pages/employee.php?id=<?= $d["num"] ?>" class="link-info text-decoration-none"><?= $d["name"] ?></a></td>
-                                    <td>ID:<?= $d["num_emp"]." - " ?><?= $d["first_name"]." ".$d["last_name"] ?></td>
-                                    <td><?= $d["nb_emp"] ?></td>
+                                    <td><a href="pages/employee.php?id=<?php echo $d["num"] ?>" class="link-info text-decoration-none"><?php echo $d["num"] ?></a></td>
+                                    <td><a href="pages/employee.php?id=<?php echo $d["num"] ?>" class="link-info text-decoration-none"><?php echo $d["name"] ?></a></td>
+                                    <td>ID:<?php echo $d["num_emp"] . " - " ?><?php echo $d["first_name"] . " " . $d["last_name"] ?></td>
+                                    <td><?php echo $d["nb_emp"] ?></td>
                                 </tr>
-                                <?php 
-                            }
-                            ?>
+                                <?php
+                                    }
+                                ?>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
+
+        <div class="card mt-3">
+        <a href="pages/historique_employee.php"><button  class="btn btn-active form-control btn-sm ">Salaire Moyen Par Emploi</button></a>
         </div>
     </main>
     <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -11,6 +11,7 @@ Index.php
     - Liste deparetement[5010 ,5mn]
     - colonne manager[5010 ,5mn]
     - Lien vers Employe.php[4737 ,1mn]
+    - Colonne nb_emp [5010, 10]
 
 # Page 
 Employe.php
@@ -26,12 +27,17 @@ Fonction.php
 Fiche.php:
     -liens employee => fiche [4737 ,10mn]
     -historique du salaire et de l'emploie occupe [4737]
+    -Emploi le plus long [4737, ]
 
 Formulaire.php(recherche):
     -departement [5010 ,2mn]
     -nom_employees[5010 ,2mn]
     -age min [5010 ,2mn]
     -age max [5010 ,2mn]
+
+ModifDept.php
+    - Formulaire [5010 , 15]
+    - Afficher emploi actuelle
 
 Fonction.php
     - dbconnect() [4737 ,2mn]

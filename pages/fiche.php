@@ -100,7 +100,7 @@
             </div>
         </div>
         <div class="card mt-3">
-            <a href="modifDept.php"><button  class="btn btn-active form-control btn-sm ">Changer de departement</button></a>
+            <a href="modifDept.php?emp_no=<?= $fiche['emp_no'] ?>"><button  class="btn btn-active form-control btn-sm ">Changer de departement</button></a>
         </div>
     </main>
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>

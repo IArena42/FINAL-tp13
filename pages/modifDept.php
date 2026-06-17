@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 <?php
 require "../inc/fonction.php";
+$emp_no = $_GET["emp_no"];
 $department = getDepartment_Manager_NbEmp();
 ?>
 <!DOCTYPE html>
@@ -22,22 +23,23 @@ $department = getDepartment_Manager_NbEmp();
     <div class="card mb-4">
             <div class="card-body">
                 <h1 class="card-title mb-3">Modification de departement</h1>
-                <form action="traitement_modif.php" method="get" class="row g-3">
+                <form action="../inc/traitement_modif.php" method="get" class="row g-3">
                     <div class="col-md-6">
                         <label for="dept" class="form-label">Departement</label>
                         <select name="dept" class="form-select" aria-placeholder="Dept">
                             <?php foreach ($department as $d) {
                                 ?>
-                                <option value="<?= $d["name"] ?>"><?= $d["name"] ?></option>
+                                <option value="<?= $d["num"] ?>"><?= $d["name"] ?></option>
                                 <?php 
                             } ?>
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="emp" class="form-label">Date de debut</label>
-                        <input type="date" class="form-control" name="emp" placeholder="Employe">
+                        <label for="date" class="form-label">Date de debut</label>
+                        <input type="date" class="form-control" name="date" placeholder="Date">
                     </div>
                     <div class="col-md-12 d-flex form-control align-items-end">
+                        <input type="number" name="emp_no" value="<?= $emp_no?>" hidden>
                         <input type="submit" value="Modifier" class="btn btn-primary w-100">
                     </div>
                 </form>

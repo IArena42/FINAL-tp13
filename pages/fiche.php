@@ -99,8 +99,8 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <a href="modifDept.php"><button  class="btn btn-outline-secondary btn-sm mb-3">Changer de departement</button></a>
+        <div class="card mt-3">
+            <a href="modifDept.php"><button  class="btn btn-active form-control btn-sm ">Changer de departement</button></a>
         </div>
     </main>
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
